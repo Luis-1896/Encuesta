@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+    <button mat-button>
+        <img class="image" width="30" heigth="30" src="../../../assets/antware.png"> ANTWARE {{NameUser}}
+    </button>
+    
+    <span class="fill-remaining-space"></span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <div *ngIf="!isClient">
+            <button mat-button routerLink="/" routerLinkActive="active">Login</button>
+        </div>
+        <div *ngIf="isClient || isAdmin">
+            <button mat-button routerLink="/survey" routerLinkActive="active">Survey</button>
+        </div>
+        <div *ngIf="isClient && isAdmin">
+            <button mat-button routerLink="/admin" routerLinkActive="active">Results</button>
+        </div>
+        <div *ngIf="isClient && isAdmin || isClient && isSuperAdmin">
+            <button mat-button routerLink="/signup" routerLinkActive="active">Signup</button>
+        </div>
+        <div *ngIf="isAdmin || isSuperAdmin">
+            <button mat-raised-button color="warn" (click)="logoutButtonClicked()">Logout</button>  
+        </div>
+    </div>
+    <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-menu x-position="before" #menu="matMenu">
+    <div *ngIf="!isClient">
+        <button mat-button routerLink="/" routerLinkActive="active">Login</button>
+    </div>
+    <div *ngIf="isClient || isAdmin">
+        <button mat-button routerLink="/survey" routerLinkActive="active">Survey</button>
+    </div>
+    <div *ngIf="isClient && isAdmin">
+        <button mat-button routerLink="/admin" routerLinkActive="active">Results</button>
+    </div>
+    <div *ngIf="isClient && isAdmin || isClient && isSuperAdmin">
+        <button mat-button routerLink="/signup" routerLinkActive="active">Signup</button>
+    </div>
+    <div *ngIf="isAdmin || isSuperAdmin">
+        <button mat-raised-button color="warn" (click)="logoutButtonClicked()">Logout</button>  
+    </div>
+</mat-menu>
+    

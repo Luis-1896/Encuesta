@@ -1,0 +1,33 @@
+<div class="table-container" role="table" aria-label="Destinations">
+    <div class="flex-table header" role="rowgroup">
+        <div class="flex-row first" role="columnheader">Name</div>
+        <div class="flex-row" role="columnheader">Company</div>
+        <div class="flex-row" role="columnheader">Email</div>
+        <div class="flex-row" role="columnheader">Options</div>
+    </div>
+
+    <div class="flex-table row" role="rowgroup" *ngFor="let surveyResponder of surveyResponders; index as i">
+        <div class="flex-row first" role="cell" *ngIf="surveyResponder.admin===false"><span class="flag-icon flag-icon-gb"></span>{{surveyResponder.name}}</div>
+        <div class="flex-row" role="cell" *ngIf="surveyResponder.admin===false">{{surveyResponder.company}} </div>
+        <div class="flex-row" role="cell" *ngIf="surveyResponder.admin===false">{{surveyResponder.email}}</div>
+        <div class="flex-row" role="cell" *ngIf="surveyResponder.admin===false"><button mat-raised-button color="primary" [disabled]="surveyResponder.status===false" (click)="information(i)">View Survey</button></div>
+    </div>
+</div>
+
+<div class="container">
+    <div fxLayoutAlign="center" fxFlex="70%" class="wrapper" fxLayout="column" fxFlex.gt-sm="70%">
+        <div style="display: block">
+            <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [colors]="doughnutChartColors"
+              [chartType]="doughnutChartType">
+            </canvas>
+        </div>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" (click)="updateSurvey()">Update</button>
+    </div>
+</div>
+
+
